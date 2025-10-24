@@ -1,4 +1,4 @@
-#  Credit Risk Prediction
+#  Credit Worthiness Prediction
 
 This project predicts whether a loan applicant is likely to receive loan or not and the credit worthiness (probability of receiving loan) of the applicant. It uses machine learning techniques and an XGBoost model fine tuned with GridSearchCV, and Flask API for serving predictions
 
