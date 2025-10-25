@@ -1,6 +1,7 @@
 import numpy as np
 import pandas as pd
 import pickle
+import xgboost as xgb
 
 # loading preprocessor to be used for new data
 def load_preprocessor(path='models/preprocessor.pkl'):
@@ -8,9 +9,10 @@ def load_preprocessor(path='models/preprocessor.pkl'):
         return pickle.load(f)
 
 # loading the xgbmodel that has been trained and tuned
-def load_model(path='models/tuned_xgb_model.pkl'):
-    with open(path, 'rb') as f:
-        return pickle.load(f)
+def load_model(path='models/tuned_xgb_model.json'):
+    model = xgb.XGBClassifier()
+    model.load_model(path)
+    return model
 
 # loading the model parameters using pickle
 def load_model_params(path='models/tuned_xgb_model_parameters'):
@@ -54,4 +56,4 @@ def result_summary(sample):
 
 sample_for_not_worthy = np.array([[21, 9600, 1000, 5,11.14,0.1,1,'OWN','EDUCATION','B',2]])
 sample_for_worthy = np.array([[35, 1000, 15000, 5, 12.5, 20, 10, 'RENT', 'PERSONAL', 'B', 0]])
-print(result_summary(sample_for_worthy))
+print(result_summary(sample_for_not_worthy))

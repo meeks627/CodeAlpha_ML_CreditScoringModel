@@ -80,8 +80,27 @@ def main():
 	# Saving the trained model
 	with open('models/preprocessor.pkl', 'wb') as f:
 					pickle.dump(processor, f)
-	with open('models/tuned_xgb_model.pkl', 'wb') as f:
-					pickle.dump(tuned_xgb, f)
+	# Save XGBoost model in native format (portable across xgboost versions).
+	# Prefer JSON for readability; xgboost may choose UBJSON if extension omitted.
+	# Try sklearn-wrapper.save_model -> booster.save_model -> (last resort) pickle.
+	try:
+		# sklearn wrapper (XGBClassifier/XGBRegressor) exposes save_model
+		if hasattr(tuned_xgb, 'save_model'):
+			tuned_xgb.save_model('models/tuned_xgb_model.json')
+			print('Saved tuned_xgb to models/tuned_xgb_model.json using save_model()')
+		else:
+			raise AttributeError('no save_model on wrapper')
+	except Exception:
+		# try extracting booster
+		try:
+			booster = tuned_xgb.get_booster()
+			booster.save_model('models/tuned_xgb_model.json')
+			print('Saved booster to models/tuned_xgb_model.json')
+		except Exception:
+			# last resort: pickle the sklearn wrapper (not recommended across xgboost upgrades)
+			with open('models/tuned_xgb_model.pkl', 'wb') as f:
+				pickle.dump(tuned_xgb, f)
+				print('Saved tuned_xgb via pickle to models/tuned_xgb_model.pkl (less portable)')
 	with open('models/tuned_xgb_model_parameters', 'wb') as f:
 					pickle.dump(bestparam, f)
 
