@@ -26,7 +26,7 @@ cb_preson_cred_hist_length >>>>        Credit history length
 ---
 ## 🧠 Workflow
 1. **Exploratory Data Analysis:**
-    - Checked for missing values
+    - Checked for missing values, first 5 rows, shape of dataset.
     - Reviewed Statistics like mean, skewness, median etc.
 
 2. **Preprocessing:**  

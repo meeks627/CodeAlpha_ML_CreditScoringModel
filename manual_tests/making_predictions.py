@@ -2,16 +2,17 @@ import numpy as np
 import pandas as pd
 import pickle
 
+# loading preprocessor to be used for new data
 def load_preprocessor(path='models/preprocessor.pkl'):
     with open(path, 'rb') as f:
         return pickle.load(f)
 
-
+# loading the xgbmodel that has been trained and tuned
 def load_model(path='models/tuned_xgb_model.pkl'):
     with open(path, 'rb') as f:
         return pickle.load(f)
 
-
+# loading the model parameters using pickle
 def load_model_params(path='models/tuned_xgb_model_parameters'):
     with open(path, 'rb') as f:
         return pickle.load(f)
@@ -25,25 +26,17 @@ def make_prediction(sample, preprocessor, model):
         print('Probalities of getting a loan [Not worthy   Worthy]: ', prediction_probs)
         # Determine the probability of the predicted class
         predicted_proba = prediction_probs[prediction].item() * 100 # Convert to percentage
-
         if prediction == 1:
             predicted_proba = predicted_proba
-#             print(f"""You are eligible for a loan. 
-# You are {predicted_proba:.2f}% worthy of this loan.""")
         else:
           predicted_proba = 100 - predicted_proba
-#           print(f"""
-# You are not eligible for a loan. 
-# Your creditworthiness is {predicted_proba:.2f}% which is less than average of 50%.
-# We're very sorry we couldn't help you.""")
-
     else:
         print("Model does not support predict_proba method.")
     return  prediction.item(),predicted_proba
 
 
 
-# The manual testing of the model
+# The manual testing of the model for each sample
 
 def result_summary(sample):
     if __name__ == "__main__":
