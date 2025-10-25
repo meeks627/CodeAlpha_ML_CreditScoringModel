@@ -81,15 +81,13 @@ python main.py
 python app.py
 python deploy.py
 ```
-```
-To run the model on google colab, you can use this link: [https://colab.research.google.com/drive/1dBsFbAQTDxSYAnrn4VJZRULiMJJYKSCB?usp=sharing](url)
+`To run the model on google colab, you can use this link: ` [https://colab.research.google.com/drive/1dBsFbAQTDxSYAnrn4VJZRULiMJJYKSCB?usp=sharing](url)
 
-Guideline to run this on colab
+`Guideline to run this on colab`
 1. Create two folders on colab named >>> "data" and "models"
 2. Download the dataset from data/credit_risk_dataset.csv from the repository or from kaggle >>> [https://www.kaggle.com/datasets/laotse/credit-risk-dataset](url)
 3. Upload the dataset and move to data
 4. Run the code
-```
 ```
 # Example of Input data
  {
