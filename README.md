@@ -1,10 +1,11 @@
-#  Credit Risk Prediction
+#  Credit Worthiness Prediction
 
 This project predicts whether a loan applicant is likely to receive loan or not and the credit worthiness (probability of receiving loan) of the applicant. It uses machine learning techniques and an XGBoost model fine tuned with GridSearchCV, and Flask API for serving predictions
 
 
 ---
 
+```
 Feature names and Descriptions 
 person_age                 >>>>        Age
 person_income              >>>>        Annual Income
@@ -18,6 +19,7 @@ loan_status                >>>>        Loan status (0 is not eligible 1 is eligi
 loan_percent_income        >>>>        Percent income
 cb_person_default_on_file  >>>>        Historical default
 cb_preson_cred_hist_length >>>>        Credit history length
+```
 
 ##  Project Structure
 
@@ -47,12 +49,12 @@ cb_preson_cred_hist_length >>>>        Credit history length
 ---
 
 ## 📈 Results of Each Model
-
+```
     model           train_accuracy  test_accuracy  f1_score  precision    recall   roc_auc
 Logistic Regression        0.854819       0.845174  0.583918   0.722449  0.489965  0.718169
 XGBoost                    0.956722       0.933098  0.830350   0.948444  0.738408  0.863486
 svmClassifier              0.916091       0.907626  0.755682   0.913641  0.644291  0.813470
-
+```
 
 **BEST MODEL:** XGBoost
 
@@ -79,7 +81,7 @@ python main.py
 python app.py
 python deploy.py
 ```
-
+```
 # Example of Input data
  {
     'person_age':22,
@@ -102,20 +104,13 @@ Output Response
 'prediction': 1
 }
 
-**Next Steps**
+Next Steps
 - Learn to deploy API to AWS
-
-ps Free for Frontend to work something around to make the predictions more user friendly
-
+PS: Free for Frontend to work something around to make the predictions more user friendly
 
 
-**Author**
+Author
 Benedict Odiwe
 odiwebenedict@gmail.com
 https://www.linkedin.com/in/emeka-odiwe
-
-
-
-
-
-
+```
