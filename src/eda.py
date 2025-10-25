@@ -4,6 +4,8 @@ import seaborn as sns
 
 
 def check_dataset(df):
+  print("First 5 rows: \n", df.head())
+  print("Shape : \n", df.shape)
   print('Number of NAN values: \n', df.isna().sum())
   numeric_df = df.select_dtypes(include=['number'])
   print('\nMedian Value: \n', numeric_df.median())
@@ -18,5 +20,11 @@ def plot_correlation(df):
     plt.show()
 
 def plot_feature_distributions(df):
-    df.hist(figsize=(20,20))
+    numeric_df = df.select_dtypes(include=['number']).columns
+    plt.figure(figsize=(20, 20))
+    for i, col in enumerate(numeric_df, 1):
+        plt.subplot(4, 5, i)
+        sns.histplot(df[col], bins=30, kde=True)
+        plt.title(col)
+    plt.tight_layout()
     plt.show()

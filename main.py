@@ -28,7 +28,6 @@ def main():
 
 	preprocess = PreProcess() # instantiating the class for preprocessing
 	Processed_dataset,X,y,processor = preprocess.preprocess_dataset(df=df)
-	print(Processed_dataset.head())
 
 	X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=SEED)
 	X_train_preprocessed = processor.fit_transform(X_train)
